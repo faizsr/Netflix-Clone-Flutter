@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:icon_forest/flat_icons_medium.dart';
-import 'package:netflix_clone_project/core/colors/colors.dart';
+import 'package:netflix_clone_project/presentation/downloads/widgets/screen_downloads.dart';
+import 'package:netflix_clone_project/presentation/fast_laugh/screen_fast_laugh.dart';
+import 'package:netflix_clone_project/presentation/home/screen_home.dart';
 import 'package:netflix_clone_project/presentation/main_page/widgets/bottom_nav.dart';
+import 'package:netflix_clone_project/presentation/new_and_hot/screen_new_and_hot.dart';
+import 'package:netflix_clone_project/presentation/search/screen_search.dart';
 
 class ScreenMainPage extends StatelessWidget {
-  const ScreenMainPage({super.key});
+  ScreenMainPage({super.key});
+
+  final pages = [
+    const ScreenHome(),
+    const ScreenNewAndHot(),
+    const ScreenFastLaugh(),
+    const ScreenSearch(),
+    const ScreenDownloads(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: backgroundColor,
-      body: SafeArea(
-        child: Center(
-          child: Icon(FlatIconsMedium.home),
-        ),
+    return Scaffold(
+      body: ValueListenableBuilder(
+        valueListenable: indexChangeNotifier,
+        builder: (context, int index, child) {
+          return pages[index];
+        },
       ),
-      bottomNavigationBar: BottomNavigationWidget(),
+      bottomNavigationBar: const BottomNavigationWidget(),
     );
   }
 }
