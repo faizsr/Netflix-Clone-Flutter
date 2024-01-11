@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_clone_project/core/assets.dart';
 
 ValueNotifier<int> indexChangeNotifier = ValueNotifier(0);
 
@@ -24,17 +25,19 @@ class BottomNavigationWidget extends StatelessWidget {
             unselectedItemColor: Colors.grey,
             selectedIconTheme: const IconThemeData(color: Colors.white),
             unselectedIconTheme: const IconThemeData(color: Colors.grey),
+            selectedLabelStyle: const TextStyle(fontSize: 11),
+            unselectedLabelStyle: const TextStyle(fontSize: 11),
             items: [
               bottomNavigationBarItem(
-                  icon: 'assets/icons/hut.png', label: 'Home', width: 23),
+                  icon: home, label: 'Home', width: 23),
               bottomNavigationBarItem(
-                  icon: 'assets/icons/play.png', label: 'New & Hot'),
+                  icon: newAndHot, label: 'New & Hot'),
               bottomNavigationBarItem(
-                  icon: 'assets/icons/smile.png', label: 'Fast Laughs'),
+                  icon: fastLaughs, label: 'Fast Laughs'),
               bottomNavigationBarItem(
-                  icon: 'assets/icons/search.png', label: 'Search'),
+                  icon: search, label: 'Search'),
               bottomNavigationBarItem(
-                  icon: 'assets/icons/down-arrow.png', label: 'Downloads'),
+                  icon: downloads, label: 'Downloads'),
             ],
           );
         });

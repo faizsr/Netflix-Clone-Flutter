@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/colors/colors.dart';
 import 'package:netflix_clone_project/presentation/main_page/screen_main_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'NetflixSans',
         scaffoldBackgroundColor: backgroundColor,
         textTheme: const TextTheme(
           bodyLarge: TextStyle(

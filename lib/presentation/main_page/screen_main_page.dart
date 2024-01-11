@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone_project/presentation/downloads/widgets/screen_downloads.dart';
+import 'package:netflix_clone_project/presentation/downloads/screen_downloads.dart';
 import 'package:netflix_clone_project/presentation/fast_laugh/screen_fast_laugh.dart';
 import 'package:netflix_clone_project/presentation/home/screen_home.dart';
 import 'package:netflix_clone_project/presentation/main_page/widgets/bottom_nav.dart';
@@ -14,7 +14,7 @@ class ScreenMainPage extends StatelessWidget {
     const ScreenNewAndHot(),
     const ScreenFastLaugh(),
     const ScreenSearch(),
-    const ScreenDownloads(),
+    ScreenDownloads(),
   ];
 
   @override
