@@ -9,6 +9,12 @@ String screenCast = 'assets/icons/cast.png';
 String setting = 'assets/icons/configuration.png';
 String searchPlay = 'assets/icons/search-play.png';
 
+String fastLaughPlay = 'assets/icons/fast-laugh-play.png';
+String fastLaughEmoji = 'assets/icons/laugh.png';
+String fastLaughShare = 'assets/icons/share.png';
+String fastLaughAdd = 'assets/icons/add.png';
+String fastLaughVolumeMute = 'assets/icons/volume-mute.png';
+
 // ======== Profile icons ========
 
 String profile = 'assets/icons/profile.png';

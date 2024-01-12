@@ -12,15 +12,17 @@ class SearchIdleWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SearchTextTitle(title: 'Popular Searches'),
-        ListView.separated(
-          padding: const EdgeInsets.only(top: 10),
-          shrinkWrap: true,
-          itemBuilder: (context, index) => PopularSearchItemTile(
-            imageList: searchImageList[index],
-            movieName: searchMovieNameList[index],
+        Expanded(
+          child: ListView.separated(
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(top: 10),
+            itemBuilder: (context, index) => PopularSearchItemTile(
+              imageList: searchImageList[1],
+              movieName: searchMovieNameList[1],
+            ),
+            separatorBuilder: (context, index) => kHeight(10),
+            itemCount: 30,
           ),
-          separatorBuilder: (context, index) => kHeight(10),
-          itemCount: searchImageList.length,
         )
       ],
     );
