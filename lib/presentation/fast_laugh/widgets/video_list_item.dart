@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/assets.dart';
-import 'package:netflix_clone_project/core/constants.dart';
+import 'package:netflix_clone_project/presentation/widgets/video_action_widget.dart';
 
 class VideoListItem extends StatelessWidget {
   const VideoListItem({super.key, required this.index});
@@ -58,50 +58,6 @@ class VideoListItem extends StatelessWidget {
           ),
         )
       ],
-    );
-  }
-}
-
-class VideoActionWidget extends StatelessWidget {
-  const VideoActionWidget({
-    super.key,
-    required this.icon,
-    required this.text,
-    this.iconSize,
-  });
-
-  final String icon;
-  final double? iconSize;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-    return Padding(
-      padding: EdgeInsets.only(
-        top: screenHeight * 0.03,
-      ),
-      child: Column(
-        children: [
-          PhysicalModel(
-            color: Colors.transparent,
-            elevation: 5,
-            shadowColor: Colors.grey.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              icon,
-              width: screenWidth * iconSize!,
-              color: Colors.white,
-            ),
-          ),
-          kHeight(screenHeight * 0.004),
-          Text(
-            text,
-            style: const TextStyle(fontSize: 11),
-          ),
-        ],
-      ),
     );
   }
 }

@@ -15,11 +15,14 @@ String fastLaughShare = 'assets/icons/share.png';
 String fastLaughAdd = 'assets/icons/add.png';
 String fastLaughVolumeMute = 'assets/icons/volume-mute.png';
 String info = 'assets/icons/info.png';
+String notification = 'assets/icons/notification.png';
 
 // ======== Profile icons ========
 
 String profile = 'assets/icons/profile.png';
 String logo = 'assets/logos/netflix-logo.png';
+String seriesLogo = 'assets/logos/netflix-series.png';
+String filmLogo = 'assets/logos/netflix-film.png';
 
 // ======== Image list ========
 
@@ -49,3 +52,6 @@ List searchMovieNameList = [
 
 const mainImage =
     "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/vFyJH630cF68LohVYjQW49074Sy.jpg";
+
+const newAndHotTempImage =
+    "https://www.themoviedb.org/t/p/w533_and_h300_bestv2/cFyp7F8qiBSuSj1qhUnu8MDvubl.jpg";
