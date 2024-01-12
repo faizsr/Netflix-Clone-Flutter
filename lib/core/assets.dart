@@ -14,16 +14,18 @@ String fastLaughEmoji = 'assets/icons/laugh.png';
 String fastLaughShare = 'assets/icons/share.png';
 String fastLaughAdd = 'assets/icons/add.png';
 String fastLaughVolumeMute = 'assets/icons/volume-mute.png';
+String info = 'assets/icons/info.png';
 
 // ======== Profile icons ========
 
 String profile = 'assets/icons/profile.png';
+String logo = 'assets/logos/netflix-logo.png';
 
 // ======== Image list ========
 
 List imageList = [
   "https://www.themoviedb.org/t/p/w220_and_h330_face/uldNFFKNXNvwss0MIZErMSFkBJZ.jpg",
-  "https://www.themoviedb.org/t/p/w220_and_h330_face/pbpoLLp4kvnYVfnEGiEhagpJuVZ.jpg",
+  "https://www.themoviedb.org/t/p /w220_and_h330_face/pbpoLLp4kvnYVfnEGiEhagpJuVZ.jpg",
   "https://www.themoviedb.org/t/p/w220_and_h330_face/pcL4VKmit4MI9QEzquRm5h4RrNw.jpg",
 ];
 
