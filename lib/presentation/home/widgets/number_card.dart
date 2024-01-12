@@ -27,7 +27,7 @@ class NumberCard extends StatelessWidget {
               height: size.height * 0.23,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: Image.network(imageList[1]).image,
+                  image: Image.network(imageList[2]).image,
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(5),

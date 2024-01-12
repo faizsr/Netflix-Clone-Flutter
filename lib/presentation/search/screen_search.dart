@@ -13,7 +13,7 @@ class ScreenSearch extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(right: 5, left: 5),
+          padding: const EdgeInsets.only(right: 5, left: 5,top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

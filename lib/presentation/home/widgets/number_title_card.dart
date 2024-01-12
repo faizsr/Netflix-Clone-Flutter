@@ -25,7 +25,7 @@ class NumberTitleCard extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: List.generate(
-                10,
+                15,
                 (index) => NumberCard(size: size, index: index,),
               ),
             ),

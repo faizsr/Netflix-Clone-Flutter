@@ -11,7 +11,7 @@ class SearchTextTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 5),
+      padding: const EdgeInsets.only(top: 5,bottom: 10),
       child: Text(
         title ?? '',
         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),

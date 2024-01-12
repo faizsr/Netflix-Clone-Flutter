@@ -15,9 +15,9 @@ class SearchIdleWidget extends StatelessWidget {
         Expanded(
           child: ListView.separated(
             shrinkWrap: true,
-            padding: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 0),
             itemBuilder: (context, index) => PopularSearchItemTile(
-              imageList: searchImageList[1],
+              imageList: searchImageList[3],
               movieName: searchMovieNameList[1],
             ),
             separatorBuilder: (context, index) => kHeight(10),
@@ -42,20 +42,25 @@ class PopularSearchItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Row(
       children: [
         Container(
-          width: screenWidth * 0.32,
-          height: 82,
+          width: screenWidth * 0.34,
+          height: screenHeight * 0.1,
           decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(imageList!), fit: BoxFit.cover),
-              borderRadius: BorderRadius.circular(5)),
+            image: DecorationImage(
+                image: NetworkImage(imageList!), fit: BoxFit.cover),
+            borderRadius: BorderRadius.circular(5),
+          ),
         ),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: Text(movieName!),
+            child: Text(
+              movieName!,
+              style: const TextStyle(fontSize: 14),
+            ),
           ),
         ),
         Container(
