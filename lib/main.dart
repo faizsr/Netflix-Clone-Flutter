@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        splashFactory: NoSplash.splashFactory,
         fontFamily: 'NetflixSans',
         scaffoldBackgroundColor: backgroundColor,
         textTheme: const TextTheme(

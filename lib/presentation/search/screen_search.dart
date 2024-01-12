@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 import 'package:netflix_clone_project/presentation/search/widgets/screen_idle.dart';
+// import 'package:netflix_clone_project/presentation/search/widgets/search_result.dart';
 
 class ScreenSearch extends StatelessWidget {
   const ScreenSearch({super.key});

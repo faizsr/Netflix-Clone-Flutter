@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 import 'package:netflix_clone_project/presentation/search/widgets/search_title.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SearchIdleWidget extends StatelessWidget {
   const SearchIdleWidget({super.key});
@@ -43,15 +45,35 @@ class PopularSearchItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    final size = MediaQuery.of(context).size;
     return Row(
       children: [
         Container(
           width: screenWidth * 0.34,
           height: screenHeight * 0.1,
           decoration: BoxDecoration(
-            image: DecorationImage(
-                image: NetworkImage(imageList!), fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(5),
+          ),
+          child: CachedNetworkImage(
+            imageUrl: imageList!,
+            imageBuilder: (context, imageProvider) => ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image(
+                image: imageProvider,
+                fit: BoxFit.cover,
+                width: size.width,
+                height: size.height,
+              ),
+            ),
+            placeholder: (context, url) => Shimmer(
+              gradient: shimmerGradient,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.black,
+                ),
+              ),
+            ),
           ),
         ),
         Expanded(

@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 import 'package:netflix_clone_project/presentation/widgets/video_action_widget.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ComingSoonCard extends StatelessWidget {
   const ComingSoonCard({super.key});
@@ -20,7 +22,7 @@ class ComingSoonCard extends StatelessWidget {
             width: size.width - 50,
             child: Column(
               children: [
-                _newAndHotMainImage(),
+                _newAndHotMainImage(size),
                 _cardDetails(size),
               ],
             ),
@@ -85,22 +87,37 @@ class ComingSoonCard extends StatelessWidget {
     );
   }
 
-  Container _newAndHotMainImage() {
+  Container _newAndHotMainImage(Size size) {
     return Container(
       width: double.infinity,
       height: 200,
       decoration: BoxDecoration(
         color: Colors.grey,
-        image: const DecorationImage(
-          image: NetworkImage(
-            newAndHotTempImage,
-          ),
-          fit: BoxFit.cover,
-        ),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Stack(
         children: [
+          CachedNetworkImage(
+            imageUrl: newAndHotTempImage,
+            imageBuilder: (context, imageProvider) => ClipRRect(
+              borderRadius: BorderRadius.circular(14),
+              child: Image(
+                image: imageProvider,
+                fit: BoxFit.cover,
+                width: size.width,
+                height: size.height,
+              ),
+            ),
+            placeholder: (context, url) => Shimmer(
+              gradient: shimmerGradient,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(14),
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
           Positioned(
             top: 10,
             left: 10,

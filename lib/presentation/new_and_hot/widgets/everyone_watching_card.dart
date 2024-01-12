@@ -1,13 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 import 'package:netflix_clone_project/presentation/widgets/video_action_widget.dart';
+import 'package:shimmer/shimmer.dart';
 
 class EveryWatchCard extends StatelessWidget {
   const EveryWatchCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(left: 5, right: 5),
       child: Column(
@@ -17,8 +20,7 @@ class EveryWatchCard extends StatelessWidget {
           Image.asset(filmLogo),
           const Text(
             'Ted',
-            style:
-                TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
           ),
           kHeight(10),
           Text(
@@ -30,7 +32,7 @@ class EveryWatchCard extends StatelessWidget {
             ),
           ),
           kHeight(30),
-          _newAndHotMainImage(),
+          _newAndHotMainImage(size),
           Padding(
             padding: const EdgeInsets.only(right: 15),
             child: Row(
@@ -71,22 +73,33 @@ class EveryWatchCard extends StatelessWidget {
     );
   }
 
-  Container _newAndHotMainImage() {
-    return Container(
+  SizedBox _newAndHotMainImage(Size size) {
+    return SizedBox(
       width: double.infinity,
       height: 200,
-      decoration: BoxDecoration(
-        color: Colors.grey,
-        image: const DecorationImage(
-          image: NetworkImage(
-            newAndHotTempImage,
-          ),
-          fit: BoxFit.cover,
-        ),
-        borderRadius: BorderRadius.circular(5),
-      ),
       child: Stack(
         children: [
+          CachedNetworkImage(
+            imageUrl: newAndHotTempImage,
+            imageBuilder: (context, imageProvider) => ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image(
+                image: imageProvider,
+                fit: BoxFit.cover,
+                width: size.width,
+                height: size.height,
+              ),
+            ),
+            placeholder: (context, url) => Shimmer(
+              gradient: shimmerGradient,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
           Positioned(
             top: 10,
             left: 10,

@@ -60,7 +60,7 @@ class SectionTwo extends StatelessWidget {
                 width: size.width * 0.31,
                 angle: 0,
                 margin: const EdgeInsets.only(right: 0, top: 20),
-                imageList: imageList[1],
+                imageList: imageList[2],
               ),
             ],
           ),

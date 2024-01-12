@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/colors/colors.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 import 'package:netflix_clone_project/presentation/home/widgets/custom_button.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeBanner extends StatelessWidget {
   const HomeBanner({super.key});
@@ -55,26 +57,46 @@ class HomeBanner extends StatelessWidget {
   Container _bannerBackground(Size size) {
     return Container(
       height: size.height * 0.65,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage(mainImage),
+          image: Image.network(mainImage).image,
           fit: BoxFit.cover,
         ),
       ),
-      child: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-            colors: [
-              Color(0xFF000000),
-              Color(0x00000000),
-              Color(0x00000000),
-              Color(0x00000000),
-              Color(0x00000000),
-            ],
+      child: Stack(
+        children: [
+          CachedNetworkImage(
+            imageUrl: mainImage,
+            imageBuilder: (context, imageProvider) => Image(
+              image: imageProvider,
+              fit: BoxFit.cover,
+              width: size.width,
+            ),
+            placeholder: (context, url) => Shimmer(
+              gradient: shimmerGradient,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                ),
+              ),
+            ),
           ),
-        ),
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  Color(0xFF000000),
+                  Color(0x00000000),
+                  Color(0x00000000),
+                  Color(0x00000000),
+                  Color(0x00000000),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
