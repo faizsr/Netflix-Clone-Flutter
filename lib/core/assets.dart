@@ -44,3 +44,6 @@ List searchMovieNameList = [
   "Bullet Train",
   "Mavarick",
 ];
+
+const mainImage =
+    "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/vFyJH630cF68LohVYjQW49074Sy.jpg";
