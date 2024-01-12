@@ -7,6 +7,7 @@ String search = 'assets/icons/search.png';
 String downloads = 'assets/icons/down-arrow.png';
 String screenCast = 'assets/icons/cast.png';
 String setting = 'assets/icons/configuration.png';
+String searchPlay = 'assets/icons/search-play.png';
 
 // ======== Profile icons ========
 
@@ -18,4 +19,22 @@ List imageList = [
   "https://www.themoviedb.org/t/p/w220_and_h330_face/uldNFFKNXNvwss0MIZErMSFkBJZ.jpg",
   "https://www.themoviedb.org/t/p/w220_and_h330_face/pbpoLLp4kvnYVfnEGiEhagpJuVZ.jpg",
   "https://www.themoviedb.org/t/p/w220_and_h330_face/pcL4VKmit4MI9QEzquRm5h4RrNw.jpg",
+];
+
+List searchImageList = [
+  "https://www.themoviedb.org/t/p/w250_and_h141_face/5lckDqUhoKnGkLgyIR5PbVZ8urr.jpg",
+  "https://www.themoviedb.org/t/p/w250_and_h141_face/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",
+  "https://www.themoviedb.org/t/p/w250_and_h141_face/gUNRlH66yNDH3NQblYMIwgZXJ2u.jpg",
+  "https://www.themoviedb.org/t/p/w250_and_h141_face/tRS6jvPM9qPrrnx2KRp3ew96Yot.jpg",
+  "https://www.themoviedb.org/t/p/w250_and_h141_face/y2Ca1neKke2mGPMaHzlCNDVZqsK.jpg",
+  "https://www.themoviedb.org/t/p/w250_and_h141_face/AaV1YIdWKnjAIAOe8UUKBFm327v.jpg",
+];
+
+List searchMovieNameList = [
+  "The Gentleman",
+  "Stranger Things",
+  "Avengers",
+  "Batman",
+  "Bullet Train",
+  "Mavarick",
 ];
