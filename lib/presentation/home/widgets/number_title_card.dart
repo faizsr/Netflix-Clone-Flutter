@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/string.dart';
+import 'package:netflix_clone_project/presentation/home/widgets/listview_loading.dart';
 import 'package:netflix_clone_project/presentation/home/widgets/number_card.dart';
 import 'package:netflix_clone_project/presentation/widgets/main_title.dart';
 
@@ -45,7 +46,7 @@ class NumberTitleCard extends StatelessWidget {
                     ),
                   );
                 } else {
-                  return const CircularProgressIndicator();
+                  return ListViewLoading(size: size);
                 }
               }),
         ],

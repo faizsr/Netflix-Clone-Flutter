@@ -1,4 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:netflix_clone_project/core/constants.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class NumberCard extends StatelessWidget {
@@ -27,11 +30,26 @@ class NumberCard extends StatelessWidget {
               width: size.width * 0.35,
               height: size.height * 0.23,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: Image.network(image).image,
-                  fit: BoxFit.cover,
-                ),
                 borderRadius: BorderRadius.circular(5),
+              ),
+              child: CachedNetworkImage(
+                imageUrl: image,
+                imageBuilder: (context, imageProvider) => ClipRRect(
+                  borderRadius: BorderRadius.circular(5.0),
+                  child: Image(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                placeholder: (context, url) => Shimmer(
+                  gradient: shimmerGradient,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

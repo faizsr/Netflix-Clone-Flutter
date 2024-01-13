@@ -69,13 +69,17 @@ class _ScreenHomeState extends State<ScreenHome> {
                           size: size,
                           title: 'Released in the past year',
                           movies: pastYearMovies,
+                          reversed: true,
                         ),
                         MainTitleCard(
                           size: size,
                           title: 'Trending Now',
                           movies: trending,
                         ),
-                        NumberTitleCard(size: size, series: topRatedSeries),
+                        NumberTitleCard(
+                          size: size,
+                          series: topRatedSeries,
+                        ),
                         MainTitleCard(
                           size: size,
                           title: 'Popular Movies',

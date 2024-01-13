@@ -2,11 +2,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
+import 'package:netflix_clone_project/core/string.dart';
+import 'package:netflix_clone_project/domain/model/movies.dart';
 import 'package:netflix_clone_project/presentation/search/widgets/search_title.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SearchIdleWidget extends StatelessWidget {
-  const SearchIdleWidget({super.key});
+  const SearchIdleWidget({
+    super.key,
+    required this.popularSearches,
+  });
+
+  final Future<List<Movie>> popularSearches;
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +21,28 @@ class SearchIdleWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SearchTextTitle(title: 'Popular Searches'),
-        Expanded(
-          child: ListView.separated(
-            shrinkWrap: true,
-            padding: const EdgeInsets.only(top: 0),
-            itemBuilder: (context, index) => PopularSearchItemTile(
-              imageList: searchImageList[3],
-              movieName: searchMovieNameList[1],
-            ),
-            separatorBuilder: (context, index) => kHeight(10),
-            itemCount: 30,
-          ),
-        )
+        FutureBuilder(
+            future: popularSearches,
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Text('Error loading');
+              } else if (snapshot.hasData) {
+                return Expanded(
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.only(top: 0),
+                    itemBuilder: (context, index) => PopularSearchItemTile(
+                      imageList: imageBaseUrl + snapshot.data![index].backdropPath,
+                      movieName: snapshot.data![index].title,
+                    ),
+                    separatorBuilder: (context, index) => kHeight(10),
+                    itemCount: snapshot.data!.length,
+                  ),
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            })
       ],
     );
   }
@@ -78,10 +95,11 @@ class PopularSearchItemTile extends StatelessWidget {
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10, right: 20),
             child: Text(
               movieName!,
-              style: const TextStyle(fontSize: 14),
+              maxLines: 2,
+              style: const TextStyle(fontSize: 14, overflow: TextOverflow.ellipsis),
             ),
           ),
         ),
