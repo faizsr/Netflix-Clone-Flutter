@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone_project/core/colors/colors.dart';
+import 'package:netflix_clone_project/core/colors.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 
 class VideoActionWidget extends StatelessWidget {

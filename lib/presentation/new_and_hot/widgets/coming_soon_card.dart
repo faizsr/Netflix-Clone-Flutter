@@ -12,7 +12,6 @@ class ComingSoonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SizedBox(
-      height: size.height * 0.58,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -81,7 +80,8 @@ class ComingSoonCard extends StatelessWidget {
                 fontWeight: FontWeight.w100,
                 fontSize: 14,
                 color: Colors.grey.shade600),
-          )
+          ),
+          kHeight(size.height * 0.04)
         ],
       ),
     );

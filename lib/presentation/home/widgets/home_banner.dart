@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/assets.dart';
-import 'package:netflix_clone_project/core/colors/colors.dart';
+import 'package:netflix_clone_project/core/colors.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 import 'package:netflix_clone_project/presentation/home/widgets/custom_button.dart';
 import 'package:shimmer/shimmer.dart';
