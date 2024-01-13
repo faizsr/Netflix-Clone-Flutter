@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone_project/core/assets.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class NumberCard extends StatelessWidget {
@@ -7,10 +6,12 @@ class NumberCard extends StatelessWidget {
     super.key,
     required this.size,
     required this.index,
+    required this.image,
   });
 
   final Size size;
   final int index;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class NumberCard extends StatelessWidget {
               height: size.height * 0.23,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: Image.network(imageList[2]).image,
+                  image: Image.network(image).image,
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(5),
