@@ -34,23 +34,11 @@ class MainTitleCard extends StatelessWidget {
               if (snapshot.hasError) {
                 return const Text('Error loading');
               } else if (snapshot.hasData) {
-                List<Widget> generatedList = List.generate(
-                  snapshot.data!.length,
-                  (index) => MainCard(
-                    size: size,
-                    image: imageBaseUrl + snapshot.data![index].posterPath,
-                  ),
-                );
-
-                if (reversed) {
-                  generatedList = generatedList.reversed.toList();
-                }
-
                 return LimitedBox(
                   maxHeight: 200,
-                  child: ListView( 
+                  child: ListView(
                     scrollDirection: Axis.horizontal,
-                    children: generatedList,
+                    children: _generateList(reversed, snapshot),
                   ),
                 );
               } else {
@@ -61,5 +49,20 @@ class MainTitleCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<Widget> _generateList(bool reversed, AsyncSnapshot snapshot) {
+    List<Widget> generatedList = List.generate(
+      snapshot.data!.length,
+      (index) => MainCard(
+        size: size,
+        image: imageBaseUrl + snapshot.data![index].posterPath,
+      ),
+    );
+
+    if (reversed) {
+      return generatedList = generatedList.reversed.toList();
+    }
+    return generatedList;
   }
 }

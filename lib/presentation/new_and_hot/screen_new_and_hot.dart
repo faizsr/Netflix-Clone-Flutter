@@ -28,22 +28,22 @@ class ScreenNewAndHot extends StatelessWidget {
     );
   }
 
-  Widget _tavViewTwo() {
-    return ListView.builder(
-      itemCount: 10,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return const EveryWatchCard();
-      },
-    );
-  }
-
   Widget _tabViewOne(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: 10,
       itemBuilder: (context, index) {
         return const ComingSoonCard();
+      },
+    );
+  }
+
+  Widget _tavViewTwo() {
+    return ListView.builder(
+      itemCount: 10,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return const EveryWatchCard();
       },
     );
   }
