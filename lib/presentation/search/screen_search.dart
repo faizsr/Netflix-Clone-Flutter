@@ -6,6 +6,7 @@ import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 import 'package:netflix_clone_project/domain/model/movies.dart';
 import 'package:netflix_clone_project/domain/model/series.dart';
+import 'package:netflix_clone_project/presentation/search/widgets/screen_idle.dart';
 import 'package:netflix_clone_project/presentation/search/widgets/search_result.dart';
 // import 'package:netflix_clone_project/presentation/search/widgets/screen_idle.dart';
 
@@ -19,6 +20,7 @@ class ScreenSearch extends StatefulWidget {
 class _ScreenSearchState extends State<ScreenSearch> {
   late Future<List<Movie>> popularSearches;
   late Future<List<Series>> seriesList;
+  bool isTapped = false;
 
   @override
   void initState() {
@@ -57,17 +59,23 @@ class _ScreenSearchState extends State<ScreenSearch> {
                   color: Color(0xFFE6E6E6),
                   letterSpacing: 0.3,
                 ),
+                onTap: () {
+                  setState(() {
+                    isTapped = true;
+                  });
+                },
               ),
               kHeight(size.height * 0.01),
-              // Expanded(
-              //   child: SearchIdleWidget(popularSearches: popularSearches),
-              // ),
-              Expanded(
-                child: SearchResultWidget(
-                  movieList: popularSearches,
-                  seriesList: seriesList,
-                ),
-              ),
+              isTapped
+                  ? Expanded(
+                      child: SearchResultWidget(
+                        movieList: popularSearches,
+                        seriesList: seriesList,
+                      ),
+                    )
+                  : Expanded(
+                      child: SearchIdleWidget(popularSearches: popularSearches),
+                    ),
             ],
           ),
         ),

@@ -23,20 +23,14 @@ class DownloadsImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Transform.rotate(
       angle: angle! * pi / 100,
       child: Container(
         margin: margin,
         height: height,
         width: width,
-        // color: Colors.white,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          // image: DecorationImage(
-          //   image: NetworkImage(imageList),
-          //   fit: BoxFit.cover,
-          // ),
         ),
         child: CachedNetworkImage(
           imageUrl: imageList,
@@ -45,8 +39,6 @@ class DownloadsImageWidget extends StatelessWidget {
             child: Image(
               image: imageProvider,
               fit: BoxFit.cover,
-              width: size.width,
-              height: size.height,
             ),
           ),
           placeholder: (context, url) => Shimmer(

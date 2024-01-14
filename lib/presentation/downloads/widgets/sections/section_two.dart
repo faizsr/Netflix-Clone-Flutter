@@ -1,10 +1,27 @@
-import 'package:flutter/material.dart';
-import 'package:netflix_clone_project/core/assets.dart';
-import 'package:netflix_clone_project/core/colors.dart';
-import 'package:netflix_clone_project/presentation/downloads/widgets/download_image.dart';
 
-class SectionTwo extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:netflix_clone_project/application/movie/trending/trending.dart';
+import 'package:netflix_clone_project/core/colors.dart';
+import 'package:netflix_clone_project/core/string.dart';
+import 'package:netflix_clone_project/domain/model/movies.dart';
+import 'package:netflix_clone_project/presentation/downloads/widgets/download_image.dart';
+import 'package:netflix_clone_project/presentation/downloads/widgets/downloads_loading.dart';
+
+class SectionTwo extends StatefulWidget {
   const SectionTwo({super.key});
+
+  @override
+  State<SectionTwo> createState() => _SectionTwoState();
+}
+
+class _SectionTwoState extends State<SectionTwo> {
+  late Future<List<Movie>> trending;
+
+  @override
+  void initState() {
+    trending = getAllTrending();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,36 +51,46 @@ class SectionTwo extends StatelessWidget {
         ),
         SizedBox(
           height: size.height * 0.32,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircleAvatar(
-                radius: size.width * 0.30,
-                backgroundColor: kGreyColor,
-              ),
-              DownloadsImageWidget(
-                height: size.height * 0.19,
-                width: size.width * 0.31,
-                angle: 10,
-                margin: const EdgeInsets.only(left: 140, bottom: 5),
-                imageList: imageList[0],
-              ),
-              DownloadsImageWidget(
-                height: size.height * 0.19,
-                width: size.width * 0.31,
-                angle: -10,
-                margin: const EdgeInsets.only(right: 140, bottom: 5),
-                imageList: imageList[2],
-              ),
-              DownloadsImageWidget(
-                height: size.height * 0.22,
-                width: size.width * 0.31,
-                angle: 0,
-                margin: const EdgeInsets.only(right: 0, top: 20),
-                imageList: imageList[2],
-              ),
-            ],
-          ),
+          child: FutureBuilder(
+              future: trending,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return const Text('Error loading');
+                } else if (snapshot.hasData) {
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: size.width * 0.30,
+                        backgroundColor: kGreyColor,
+                      ),
+                      DownloadsImageWidget(
+                        height: size.height * 0.19,
+                        width: size.width * 0.31,
+                        angle: 10,
+                        margin: const EdgeInsets.only(left: 140, bottom: 5),
+                        imageList: imageBaseUrl + snapshot.data![4].posterPath,
+                      ),
+                      DownloadsImageWidget(
+                        height: size.height * 0.19,
+                        width: size.width * 0.31,
+                        angle: -10,
+                        margin: const EdgeInsets.only(right: 140, bottom: 5),
+                        imageList: imageBaseUrl + snapshot.data![5].posterPath,
+                      ),
+                      DownloadsImageWidget(
+                        height: size.height * 0.22,
+                        width: size.width * 0.31,
+                        angle: 0,
+                        margin: const EdgeInsets.only(right: 0, top: 20),
+                        imageList: imageBaseUrl + snapshot.data![7].posterPath,
+                      ),
+                    ],
+                  );
+                } else {
+                  return DownloadsLoadingWidget(size: size);
+                }
+              }),
         )
       ],
     );
