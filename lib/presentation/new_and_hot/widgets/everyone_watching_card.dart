@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
-import 'package:netflix_clone_project/presentation/widgets/video_action_widget.dart';
+import 'package:netflix_clone_project/presentation/new_and_hot/widgets/action_widgets.dart';
 import 'package:shimmer/shimmer.dart';
 
 class EveryWatchCard extends StatelessWidget {
@@ -47,7 +47,7 @@ class EveryWatchCard extends StatelessWidget {
             child: Row(
               children: [
                 const Spacer(),
-                VideoActionWidget(
+                ActionWidget(
                   icon: fastLaughShare,
                   iconSize: 0.05,
                   text: 'Share',
@@ -56,7 +56,7 @@ class EveryWatchCard extends StatelessWidget {
                   textColor: Colors.grey.shade500,
                 ),
                 kWidth(20),
-                VideoActionWidget(
+                ActionWidget(
                   icon: fastLaughAdd,
                   iconSize: 0.05,
                   text: 'My List',
@@ -65,7 +65,7 @@ class EveryWatchCard extends StatelessWidget {
                   textColor: Colors.grey.shade500,
                 ),
                 kWidth(25),
-                VideoActionWidget(
+                ActionWidget(
                   icon: fastLaughPlay,
                   iconSize: 0.05,
                   text: 'Play',

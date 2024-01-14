@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
-import 'package:netflix_clone_project/presentation/widgets/video_action_widget.dart';
+import 'package:netflix_clone_project/presentation/new_and_hot/widgets/action_widgets.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:intl/intl.dart';
 
@@ -53,7 +53,7 @@ class ComingSoonCard extends StatelessWidget {
           Row(
             children: [
               const Spacer(),
-              VideoActionWidget(
+              ActionWidget(
                 icon: notification,
                 iconSize: 0.06,
                 text: 'Remind Me',
@@ -62,7 +62,7 @@ class ComingSoonCard extends StatelessWidget {
                 textColor: Colors.grey.shade600,
               ),
               kWidth(size.width * 0.08),
-              VideoActionWidget(
+              ActionWidget(
                 icon: info,
                 iconSize: 0.055,
                 text: 'Info',

@@ -3,13 +3,11 @@ import 'package:netflix_clone_project/core/colors.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 import 'package:video_player/video_player.dart';
 
-class VideoActionWidget extends StatefulWidget {
-  const VideoActionWidget({
+class ActionWidget extends StatefulWidget {
+  const ActionWidget({
     super.key,
     required this.icon,
-    required this.icon2,
     required this.text,
-    required this.text2,
     this.iconSize,
     this.textColor,
     this.height,
@@ -18,20 +16,18 @@ class VideoActionWidget extends StatefulWidget {
   });
 
   final String icon;
-  final String icon2;
   final double? iconSize;
   final double? height;
   final double? textSize;
   final String text;
-  final String text2;
   final Color? textColor;
   final VideoPlayerController? playerController;
 
   @override
-  State<VideoActionWidget> createState() => _VideoActionWidgetState();
+  State<ActionWidget> createState() => _ActionWidgetState();
 }
 
-class _VideoActionWidgetState extends State<VideoActionWidget> {
+class _ActionWidgetState extends State<ActionWidget> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -57,35 +53,21 @@ class _VideoActionWidgetState extends State<VideoActionWidget> {
               elevation: 5,
               shadowColor: Colors.grey.withOpacity(0.5),
               borderRadius: BorderRadius.circular(8),
-              child: widget.playerController!.value.isPlaying
-                  ? Image.asset(
-                      widget.icon2,
-                      width: screenWidth * widget.iconSize!,
-                      color: kWhiteColor,
-                    )
-                  : Image.asset(
-                      widget.icon,
-                      width: screenWidth * widget.iconSize!,
-                      color: kWhiteColor,
-                    ),
+              child: Image.asset(
+                widget.icon,
+                width: screenWidth * widget.iconSize!,
+                color: kWhiteColor,
+              ),
             ),
           ),
           kHeight(screenHeight * (widget.height ?? 0.004)),
-          widget.playerController!.value.isPlaying
-              ? Text(
-                  widget.text2,
-                  style: TextStyle(
-                    fontSize: widget.textSize ?? 11,
-                    color: widget.textColor ?? kWhiteColor,
-                  ),
-                )
-              : Text(
-                  widget.text,
-                  style: TextStyle(
-                    fontSize: widget.textSize ?? 11,
-                    color: widget.textColor ?? kWhiteColor,
-                  ),
-                )
+          Text(
+            widget.text,
+            style: TextStyle(
+              fontSize: widget.textSize ?? 11,
+              color: widget.textColor ?? kWhiteColor,
+            ),
+          )
         ],
       ),
     );
