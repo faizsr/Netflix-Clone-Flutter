@@ -1,14 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:netflix_clone_project/application/movie/past_year/past_year.dart';
-import 'package:netflix_clone_project/application/tv_series/discover/discover.dart';
+import 'package:netflix_clone_project/application/search/search.dart';
 import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 import 'package:netflix_clone_project/domain/model/movies.dart';
 import 'package:netflix_clone_project/domain/model/series.dart';
 import 'package:netflix_clone_project/presentation/search/widgets/screen_idle.dart';
 import 'package:netflix_clone_project/presentation/search/widgets/search_result.dart';
-// import 'package:netflix_clone_project/presentation/search/widgets/screen_idle.dart';
+
+ValueNotifier<List<Movie>> searching = ValueNotifier([]);
 
 class ScreenSearch extends StatefulWidget {
   const ScreenSearch({super.key});
@@ -18,14 +20,15 @@ class ScreenSearch extends StatefulWidget {
 }
 
 class _ScreenSearchState extends State<ScreenSearch> {
+  final TextEditingController searchController = TextEditingController();
   late Future<List<Movie>> popularSearches;
   late Future<List<Series>> seriesList;
   bool isTapped = false;
 
   @override
   void initState() {
-    popularSearches = getAllPastYearMovies();
-    seriesList = getAllSeries();
+    popularSearches = getAllMoviesList('');
+    seriesList = getAllSeriesList('');
     super.initState();
   }
 
@@ -40,6 +43,7 @@ class _ScreenSearchState extends State<ScreenSearch> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CupertinoSearchTextField(
+                controller: searchController,
                 backgroundColor: const Color(0xFF323232),
                 prefixInsets: EdgeInsetsDirectional.zero,
                 suffixInsets: const EdgeInsetsDirectional.only(end: 10),
@@ -62,6 +66,12 @@ class _ScreenSearchState extends State<ScreenSearch> {
                 onTap: () {
                   setState(() {
                     isTapped = true;
+                  });
+                },
+                onChanged: (value) {
+                  setState(() {
+                    popularSearches = getAllMoviesList(value);
+                    seriesList = getAllSeriesList(value);
                   });
                 },
               ),
