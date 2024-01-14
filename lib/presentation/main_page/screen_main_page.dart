@@ -19,14 +19,21 @@ class ScreenMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ValueListenableBuilder(
-        valueListenable: indexChangeNotifier,
-        builder: (context, int index, child) {
-          return pages[index];
-        },
+    return PopScope(
+      canPop: indexChangeNotifier.value != 0,
+      onPopInvoked: (didPop) async{
+        indexChangeNotifier.value = 0;
+        didPop = true;
+      },
+      child: Scaffold(
+        body: ValueListenableBuilder(
+          valueListenable: indexChangeNotifier,
+          builder: (context, int index, child) {
+            return pages[index];
+          },
+        ),
+        bottomNavigationBar: const BottomNavigationWidget(),
       ),
-      bottomNavigationBar: const BottomNavigationWidget(),
     );
   }
 }

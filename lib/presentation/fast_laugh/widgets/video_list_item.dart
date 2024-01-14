@@ -40,10 +40,15 @@ class _VideoListItemState extends State<VideoListItem> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: VideoPlayer(playerController!),
+        SizedBox.expand(
+          child: FittedBox(
+            fit: BoxFit.cover,
+            child: SizedBox(
+              width: playerController!.value.size.width,
+              height: playerController!.value.size.height,
+              child: VideoPlayer(playerController!),
+            ),
+          ),
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -57,24 +62,25 @@ class _VideoListItemState extends State<VideoListItem> {
                   radius: 22,
                   backgroundColor: Colors.black,
                   child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        isVolumeOn == false
-                            ? playerController!.setVolume(4)
-                            : playerController!.setVolume(0);
-                        isVolumeOn = !isVolumeOn;
-                      });
-                    },
-                    child: isVolumeOn ? Image.asset(
-                      fastLaughVolume,
-                      color: Colors.white,
-                      width: 20,
-                    ) : Image.asset(
-                      fastLaughVolumeMute,
-                      color: Colors.white,
-                      width: 20,
-                    )
-                  ),
+                      onTap: () {
+                        setState(() {
+                          isVolumeOn == false
+                              ? playerController!.setVolume(4)
+                              : playerController!.setVolume(0);
+                          isVolumeOn = !isVolumeOn;
+                        });
+                      },
+                      child: isVolumeOn
+                          ? Image.asset(
+                              fastLaughVolume,
+                              color: Colors.white,
+                              width: 20,
+                            )
+                          : Image.asset(
+                              fastLaughVolumeMute,
+                              color: Colors.white,
+                              width: 20,
+                            )),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
