@@ -2,7 +2,7 @@ class Movie {
   int id;
   String title;
   String overView;
-  String releaseDate;
+  DateTime releaseDate;
   String posterPath;
   String backdropPath;
   List genre;
@@ -23,7 +23,7 @@ class Movie {
       posterPath: json['poster_path'],
       overView: json['overview'],
       backdropPath: json['backdrop_path'],
-      releaseDate: json['release_date'],
+      releaseDate: DateTime.tryParse(json['release_date'])! ,
       genre: json['genre_ids']
     );
   }

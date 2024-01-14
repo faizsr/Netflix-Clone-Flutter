@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/application/movie/past_year/past_year.dart';
+import 'package:netflix_clone_project/application/tv_series/discover/discover.dart';
 import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 import 'package:netflix_clone_project/domain/model/movies.dart';
-import 'package:netflix_clone_project/presentation/search/widgets/screen_idle.dart';
+import 'package:netflix_clone_project/domain/model/series.dart';
+import 'package:netflix_clone_project/presentation/search/widgets/search_result.dart';
+// import 'package:netflix_clone_project/presentation/search/widgets/screen_idle.dart';
 
 class ScreenSearch extends StatefulWidget {
   const ScreenSearch({super.key});
@@ -15,10 +18,12 @@ class ScreenSearch extends StatefulWidget {
 
 class _ScreenSearchState extends State<ScreenSearch> {
   late Future<List<Movie>> popularSearches;
+  late Future<List<Series>> seriesList;
 
   @override
   void initState() {
     popularSearches = getAllPastYearMovies();
+    seriesList = getAllSeries();
     super.initState();
   }
 
@@ -54,12 +59,15 @@ class _ScreenSearchState extends State<ScreenSearch> {
                 ),
               ),
               kHeight(size.height * 0.01),
-              Expanded(
-                child: SearchIdleWidget(popularSearches: popularSearches),
-              ),
-              // const Expanded(
-              //   child: SearchResultWidget(),
+              // Expanded(
+              //   child: SearchIdleWidget(popularSearches: popularSearches),
               // ),
+              Expanded(
+                child: SearchResultWidget(
+                  movieList: popularSearches,
+                  seriesList: seriesList,
+                ),
+              ),
             ],
           ),
         ),

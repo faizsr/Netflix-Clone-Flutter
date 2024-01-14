@@ -4,9 +4,21 @@ import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
 import 'package:netflix_clone_project/presentation/widgets/video_action_widget.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:intl/intl.dart';
 
 class ComingSoonCard extends StatelessWidget {
-  const ComingSoonCard({super.key});
+  const ComingSoonCard({
+    super.key,
+    required this.image,
+    required this.overview,
+    required this.title,
+    required this.date,
+  });
+
+  final String image;
+  final String title;
+  final String overview;
+  final DateTime date;
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +27,14 @@ class ComingSoonCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _newAndHotSideDate(size),
+          _newAndHotSideDate(size, date),
           SizedBox(
             // height: size.height * 0.6,
             width: size.width - 50,
             child: Column(
               children: [
-                _newAndHotMainImage(size),
-                _cardDetails(size),
+                _newAndHotMainImage(size, image),
+                _cardDetails(size, title, overview, date),
               ],
             ),
           ),
@@ -31,7 +43,8 @@ class ComingSoonCard extends StatelessWidget {
     );
   }
 
-  Padding _cardDetails(Size size) {
+  Padding _cardDetails(
+      Size size, String title, String overview, DateTime date) {
     return Padding(
       padding: const EdgeInsets.only(right: 30),
       child: Column(
@@ -59,23 +72,23 @@ class ComingSoonCard extends StatelessWidget {
               ),
             ],
           ),
-          const Text(
-            'Season 3 coming on Friday',
-            style: TextStyle(
+          Text(
+            'Releasing on ${DateFormat('EEEE').format(date)} ',
+            style: const TextStyle(
               fontWeight: FontWeight.w100,
               fontSize: 16,
             ),
           ),
           kHeight(10),
-          Image.asset(seriesLogo),
-          const Text(
-            'Ted',
-            style:
-                TextStyle(fontWeight: FontWeight.w600, fontSize: 18, height: 1),
+          Image.asset(filmLogo),
+          Text(
+            title,
+            style: const TextStyle(
+                fontWeight: FontWeight.w600, fontSize: 18, height: 1),
           ),
           kHeight(10),
           Text(
-            "Struggling to come to terms with his wife's death, a writer for a newspaper adopts a gruff new persona in an effort to push away those trying to help",
+            overview,
             style: TextStyle(
                 fontWeight: FontWeight.w100,
                 fontSize: 14,
@@ -87,10 +100,10 @@ class ComingSoonCard extends StatelessWidget {
     );
   }
 
-  Container _newAndHotMainImage(Size size) {
+  Container _newAndHotMainImage(Size size, String image) {
     return Container(
       width: double.infinity,
-      height: 200,
+      height: size.height * 0.255,
       decoration: BoxDecoration(
         color: Colors.grey,
         borderRadius: BorderRadius.circular(14),
@@ -98,7 +111,7 @@ class ComingSoonCard extends StatelessWidget {
       child: Stack(
         children: [
           CachedNetworkImage(
-            imageUrl: newAndHotTempImage,
+            imageUrl: image,
             imageBuilder: (context, imageProvider) => ClipRRect(
               borderRadius: BorderRadius.circular(14),
               child: Image(
@@ -126,43 +139,27 @@ class ComingSoonCard extends StatelessWidget {
               width: 16,
             ),
           ),
-          Positioned(
-            bottom: 10,
-            right: 10,
-            child: CircleAvatar(
-              radius: 18,
-              backgroundColor: Colors.black,
-              child: InkWell(
-                onTap: () {},
-                child: Image.asset(
-                  fastLaughVolumeMute,
-                  color: Colors.white,
-                  width: 18,
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );
   }
 
-  SizedBox _newAndHotSideDate(Size size) {
+  SizedBox _newAndHotSideDate(Size size, DateTime date) {
     return SizedBox(
       width: 50,
       // height: size.height * 0.6,
       child: Column(
         children: [
           Text(
-            'JAN',
+            DateFormat('MMM').format(date).toUpperCase(),
             style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w100,
                 color: Colors.grey.shade600),
           ),
-          const Text(
-            '14',
-            style: TextStyle(
+          Text(
+            DateFormat('dd').format(date),
+            style: const TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w500,
               height: 1,

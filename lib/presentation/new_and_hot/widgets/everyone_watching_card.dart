@@ -6,7 +6,16 @@ import 'package:netflix_clone_project/presentation/widgets/video_action_widget.d
 import 'package:shimmer/shimmer.dart';
 
 class EveryWatchCard extends StatelessWidget {
-  const EveryWatchCard({super.key});
+  const EveryWatchCard({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.overview,
+  });
+
+  final String image;
+  final String title;
+  final String overview;
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +26,14 @@ class EveryWatchCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           kHeight(10),
-          Image.asset(filmLogo),
-          const Text(
-            'Ted',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+          Image.asset(seriesLogo),
+          Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
           ),
           kHeight(10),
           Text(
-            "Struggling to come to terms with his wife's death, a writer for a newspaper adopts a gruff new persona in an effort to push away those trying to help",
+            overview,
             style: TextStyle(
               fontWeight: FontWeight.w100,
               fontSize: 14,
@@ -32,7 +41,7 @@ class EveryWatchCard extends StatelessWidget {
             ),
           ),
           kHeight(30),
-          _newAndHotMainImage(size),
+          _newAndHotMainImage(size, image),
           Padding(
             padding: const EdgeInsets.only(right: 15),
             child: Row(
@@ -73,14 +82,14 @@ class EveryWatchCard extends StatelessWidget {
     );
   }
 
-  SizedBox _newAndHotMainImage(Size size) {
+  SizedBox _newAndHotMainImage(Size size, String image) {
     return SizedBox(
       width: double.infinity,
       height: 200,
       child: Stack(
         children: [
           CachedNetworkImage(
-            imageUrl: newAndHotTempImage,
+            imageUrl: image,
             imageBuilder: (context, imageProvider) => ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: Image(
@@ -106,22 +115,6 @@ class EveryWatchCard extends StatelessWidget {
             child: Image.asset(
               logo,
               width: 16,
-            ),
-          ),
-          Positioned(
-            bottom: 10,
-            right: 10,
-            child: CircleAvatar(
-              radius: 18,
-              backgroundColor: Colors.black,
-              child: InkWell(
-                onTap: () {},
-                child: Image.asset(
-                  fastLaughVolumeMute,
-                  color: Colors.white,
-                  width: 18,
-                ),
-              ),
             ),
           ),
         ],
