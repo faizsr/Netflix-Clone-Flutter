@@ -28,7 +28,15 @@ class SearchResultWidget extends StatelessWidget {
           future: Future.wait([movieList, seriesList]),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return const Text('Error Loading');
+              return SpinKitFadingCircle(
+                itemBuilder: (BuildContext context, int index) {
+                  return DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: index.isEven ? Colors.red : Colors.green,
+                    ),
+                  );
+                },
+              );
             } else if (snapshot.hasData) {
               int length = snapshot.data![0].length + snapshot.data![1].length;
               List<dynamic> movies = snapshot.data![0];

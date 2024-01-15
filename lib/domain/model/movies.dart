@@ -22,7 +22,7 @@ class Movie {
       title: json['title'],
       posterPath: json['poster_path'],
       overView: json['overview'],
-      backdropPath: json['backdrop_path'],
+      backdropPath: json['backdrop_path'] ?? "https://firebasestorage.googleapis.com/v0/b/api-netflix-4acce.appspot.com/o/Error%20image.jpg?alt=media&token=902c101f-c10e-4f4e-8318-aad84c640ff3",
       releaseDate: DateTime.tryParse(json['release_date'])! ,
       genre: json['genre_ids']
     );

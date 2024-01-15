@@ -41,13 +41,10 @@ class _VideoListItemState extends State<VideoListItem> {
     return Stack(
       children: [
         SizedBox.expand(
-          child: FittedBox(
-            fit: BoxFit.cover,
-            child: SizedBox(
-              width: playerController!.value.size.width,
-              height: playerController!.value.size.height,
-              child: VideoPlayer(playerController!),
-            ),
+          child: SizedBox(
+            width: playerController!.value.size.width,
+            height: playerController!.value.size.height,
+            child: VideoPlayer(playerController!),
           ),
         ),
         Align(

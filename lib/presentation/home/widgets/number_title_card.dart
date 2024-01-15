@@ -28,7 +28,7 @@ class NumberTitleCard extends StatelessWidget {
               future: series,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
-                  return const Text('Error loading');
+                  return ErrorLoading(size: size);
                 } else if (snapshot.hasData) {
                   return LimitedBox(
                     maxHeight: 200,
