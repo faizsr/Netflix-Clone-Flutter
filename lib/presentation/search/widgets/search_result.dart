@@ -41,28 +41,39 @@ class SearchResultWidget extends StatelessWidget {
               int length = snapshot.data![0].length + snapshot.data![1].length;
               List<dynamic> movies = snapshot.data![0];
               List<dynamic> series = snapshot.data![1];
-              return Expanded(
-                child: GridView.count(
-                  padding: const EdgeInsets.only(top: 0, bottom: 10),
-                  shrinkWrap: true,
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                  childAspectRatio: 1 / 1.4,
-                  children: List.generate(length, (index) {
-                    if (index < movies.length) {
-                      return SearchMainCard(
-                        image: imageBaseUrl + movies[index].posterPath,
-                      );
-                    } else {
-                      int seriesIndex = index - movies.length;
-                      return SearchMainCard(
-                        image: imageBaseUrl + series[seriesIndex].posterPath,
-                      );
-                    }
-                  }),
-                ),
-              );
+              return movies.isNotEmpty && series.isNotEmpty
+                  ? Expanded(
+                      child: GridView.count(
+                        padding: const EdgeInsets.only(top: 0, bottom: 10),
+                        shrinkWrap: true,
+                        crossAxisCount: 3,
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 8,
+                        childAspectRatio: 1 / 1.4,
+                        children: List.generate(length, (index) {
+                          if (index < movies.length) {
+                            return SearchMainCard(
+                              image: imageBaseUrl + movies[index].posterPath,
+                            );
+                          } else {
+                            int seriesIndex = index - movies.length;
+                            return SearchMainCard(
+                              image:
+                                  imageBaseUrl + series[seriesIndex].posterPath,
+                            );
+                          }
+                        }),
+                      ),
+                    )
+                  : const Align(
+                      child: Text(
+                        'No results found!!!',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    );
             } else {
               return SpinKitFadingCircle(
                 itemBuilder: (BuildContext context, int index) {

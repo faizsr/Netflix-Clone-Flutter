@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix_clone_project/application/search/search.dart';
 import 'package:netflix_clone_project/core/assets.dart';
 import 'package:netflix_clone_project/core/constants.dart';
+import 'package:netflix_clone_project/core/utils/debouncer.dart';
 import 'package:netflix_clone_project/domain/model/movies.dart';
 import 'package:netflix_clone_project/domain/model/series.dart';
 import 'package:netflix_clone_project/presentation/search/widgets/screen_idle.dart';
@@ -23,6 +24,8 @@ class _ScreenSearchState extends State<ScreenSearch> {
   final TextEditingController searchController = TextEditingController();
   late Future<List<Movie>> popularSearches;
   late Future<List<Series>> seriesList;
+  final Debouncer debouncer =
+      Debouncer(delay: const Duration(milliseconds: 500));
   bool isTapped = false;
 
   @override
@@ -69,9 +72,11 @@ class _ScreenSearchState extends State<ScreenSearch> {
                   });
                 },
                 onChanged: (value) {
-                  setState(() {
-                    popularSearches = getAllMoviesList(value);
-                    seriesList = getAllSeriesList(value);
+                  debouncer.run(() {
+                    setState(() {
+                      popularSearches = getAllMoviesList(value);
+                      seriesList = getAllSeriesList(value);
+                    });
                   });
                 },
               ),
@@ -83,7 +88,7 @@ class _ScreenSearchState extends State<ScreenSearch> {
                         seriesList: seriesList,
                       ),
                     )
-                  : Expanded(
+                  :  Expanded(
                       child: SearchIdleWidget(popularSearches: popularSearches),
                     ),
             ],
