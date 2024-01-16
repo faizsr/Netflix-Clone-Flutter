@@ -9,7 +9,11 @@ String popularMovie = ApiEndPoints.popularMovies;
 
 Future<List<Movie>> getAllPopular() async {
   final response = await http.get(Uri.parse(popularMovie));
-  final bodyAsJson = jsonDecode(response.body) as Map<String, dynamic>;
-  final data = MovieList.fromJson(bodyAsJson['results']);
-  return data.movieList;
+  if (response.statusCode == 200) {
+    final bodyAsJson = jsonDecode(response.body) as Map<String, dynamic>;
+    final data = MovieList.fromJson(bodyAsJson['results']);
+    return data.movieList;
+  } else {
+    throw Exception('Server Failure Please Try Again!!!');
+  }
 }

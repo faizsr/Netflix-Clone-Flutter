@@ -9,7 +9,11 @@ String pastYearMovies = ApiEndPoints.pastYearMovies;
 
 Future<List<Movie>> getAllPastYearMovies() async {
   final response = await http.get(Uri.parse(pastYearMovies));
-  final bodyAsJson = jsonDecode(response.body) as Map<String, dynamic>;
-  final data = MovieList.fromJson(bodyAsJson['results']);
-  return data.movieList;
+  if (response.statusCode == 200) {
+    final bodyAsJson = jsonDecode(response.body) as Map<String, dynamic>;
+    final data = MovieList.fromJson(bodyAsJson['results']);
+    return data.movieList;
+  } else {
+    throw Exception('Server Failure Please Try Again!!!');
+  }
 }

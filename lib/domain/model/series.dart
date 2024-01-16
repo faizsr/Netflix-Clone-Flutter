@@ -1,3 +1,5 @@
+import 'package:netflix_clone_project/core/assets.dart';
+
 class Series {
   int id;
   String title;
@@ -22,7 +24,7 @@ class Series {
       title: json['original_name'],
       posterPath: json['poster_path'],
       overView: json['overview'],
-      backdropPath: json['backdrop_path'],
+      backdropPath: json['backdrop_path'] ?? mainImage,
       releaseDate: json['first_air_date'],
       genre: json['genre_ids']
     );

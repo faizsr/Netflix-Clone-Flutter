@@ -92,7 +92,15 @@ class _ScreenNewAndHotState extends State<ScreenNewAndHot> {
       future: popularMovies,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Text('Error loading');
+          return SpinKitFadingCircle(
+            itemBuilder: (BuildContext context, int index) {
+              return DecoratedBox(
+                decoration: BoxDecoration(
+                  color: index.isEven ? Colors.red : Colors.green,
+                ),
+              );
+            },
+          );
         } else if (snapshot.hasData) {
           return ListView.builder(
             itemCount: 10,

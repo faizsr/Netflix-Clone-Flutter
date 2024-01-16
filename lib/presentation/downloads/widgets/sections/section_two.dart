@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:netflix_clone_project/application/movie/trending/trending.dart';
 import 'package:netflix_clone_project/core/colors.dart';
 import 'package:netflix_clone_project/core/string.dart';
@@ -55,7 +55,17 @@ class _SectionTwoState extends State<SectionTwo> {
               future: trending,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
-                  return const Text('Error loading');
+                  return Center(
+                    child: SpinKitFadingCircle(
+                      itemBuilder: (BuildContext context, int index) {
+                        return DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: index.isEven ? Colors.red : Colors.green,
+                          ),
+                        );
+                      },
+                    ),
+                  );
                 } else if (snapshot.hasData) {
                   return Stack(
                     alignment: Alignment.center,

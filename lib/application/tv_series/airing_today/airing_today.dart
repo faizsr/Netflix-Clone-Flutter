@@ -9,7 +9,11 @@ String airingTodaySeries = ApiEndPoints.airingTodaySeries;
 
 Future<List<Series>> getAllSeriesAiringToday() async {
   final response = await http.get(Uri.parse(airingTodaySeries));
-  final bodyAsJson = jsonDecode(response.body) as Map<String, dynamic>;
-  final data = SeriesList.fromJson(bodyAsJson['results']);
-  return data.seriesList;
+  if (response.statusCode == 200) {
+    final bodyAsJson = jsonDecode(response.body) as Map<String, dynamic>;
+    final data = SeriesList.fromJson(bodyAsJson['results']);
+    return data.seriesList;
+  } else {
+    throw Exception('Server Failure Please Try Again!!!');
+  }
 }
